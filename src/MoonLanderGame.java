@@ -19,8 +19,8 @@ public class MoonLanderGame extends Game {
     }
 
     private void createGameObjects() {
-landscape = new GameObject(0, 0, ShapeMatrix.LANDSPACE);
- rocket = new Rocket(WIDTH/2, 0);
+        landscape = new GameObject(0, 25, ShapeMatrix.LANDSPACE);
+        rocket = new Rocket(WIDTH/2, 0);
     }
 
     private void drawScene() {
