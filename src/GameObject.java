@@ -8,12 +8,45 @@ public class GameObject {
     double y;
     int[][] matrix;
 
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public int[][] getMatrix() {
+        return matrix;
+    }
+
+    public void setMatrix(int[][] matrix) {
+        this.matrix = matrix;
+    }
+
     public GameObject(double x, double y, int[][] matrix) {
         this.x = x;
         this.y = y;
         this.matrix = matrix;
         height = matrix.length;
         width = matrix[0].length;
+
     }
     public void draw(Game game){
         if (matrix==null){

@@ -66,4 +66,37 @@ public class ShapeMatrix {
 
 
     };
+    public static final int[][] FIRE_DOWN_1 = {
+            {5},
+            {5},
+            {0},
+            {5},
+            {5},
+            {0},
+            {5}
+    };
+    public static final int[][] FIRE_DOWN_2 = {
+            {0},
+            {5},
+            {5},
+            {0},
+            {5},
+            {5},
+            {0}
+    };
+    public static final int[][] FIRE_DOWN_3 = {
+            {5},
+            {0},
+            {5},
+            {5},
+            {0},
+            {5},
+            {5}
+    };
+    public static final int[][] FIRE_SIDE_1 = {
+            {5, 0, 5}
+    };
+    public static final int[][] FIRE_SIDE_2 = {
+            {0, 5, 0}
+    };
 }
