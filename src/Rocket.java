@@ -5,7 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Rocket extends GameObject {
+
     private final RocketFire downFire;
+    private final RocketFire rightFire;
+    private final RocketFire leftFire;
     private double speedY = 0;
     private double boost = 0.05;
     private double speedX = 0;
@@ -22,12 +25,17 @@ public class Rocket extends GameObject {
                 ShapeMatrix.FIRE_DOWN_3
         );
         downFire = new RocketFire(tempList);
+        tempList = Arrays.asList(ShapeMatrix.FIRE_SIDE_1, ShapeMatrix.FIRE_SIDE_2);
+        leftFire = new RocketFire(tempList);
+        rightFire = new RocketFire(tempList);
     }
 
     @Override
     public void draw(Game game) {
         super.draw(game);
         downFire.draw(game);
+        leftFire.draw(game);
+        rightFire.draw(game);
     }
 
     public void move(boolean isUpPressed, boolean isLeftPressed, boolean isRightPressed) {
@@ -53,11 +61,41 @@ public class Rocket extends GameObject {
         }
         setX(getX() + speedX);
         checkBorders();
+        switchFire(isUpPressed);
+        switchFire(isUpPressed, isLeftPressed, isRightPressed);
+    }
+
+    private void switchFire(boolean isUpPressed) {
+        if (isUpPressed) {
+            downFire.setX(getX() + getWidth() / 2);
+            downFire.setY(getY() + getHeight());
+            downFire.show();
+        } else {
+            downFire.hide();
+        }
+    }
+
+    private void switchFire(boolean isUpPressed, boolean isLeftPressed, boolean isRightPressed) {
+        if (isLeftPressed) {
+            leftFire.setX(getX() - 1);
+            leftFire.setY(getY() + getHeight());
+            leftFire.show();
+        } else {
+            leftFire.hide();
+        }
+
+        if (isRightPressed) {
+            rightFire.setX(getX() + 5);
+            rightFire.setY(getY() + getHeight());
+            rightFire.show();
+        } else {
+            rightFire.hide();
+        }
     }
 
     private void checkBorders() {
-        if (getX() < LEFT_BORDER + 1) setX(LEFT_BORDER + 1);
+        if (getX() < LEFT_BORDER+1) setX(LEFT_BORDER+1);
         if (getX() > RIGHT_BORDER - getWidth()) setX(RIGHT_BORDER - getWidth());
-        if (getY() < UP_BORDER + 1) setY(UP_BORDER + 1);
+        if (getY() < UP_BORDER+1) setY(UP_BORDER+1);
     }
 }

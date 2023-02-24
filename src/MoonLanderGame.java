@@ -6,7 +6,7 @@ public class MoonLanderGame extends Game {
     private static final int WIDTH = 64;
     private static final int HEIGHT = 64;
     private GameObject landscape;
-    private Rocket  rocket;
+    private Rocket rocket;
     private boolean isUpPressed;
     private boolean isLeftPressed;
     private boolean isRightPressed;
@@ -32,13 +32,13 @@ public class MoonLanderGame extends Game {
 
     private void createGameObjects() {
         landscape = new GameObject(0, 25, ShapeMatrix.LANDSPACE);
-        rocket = new Rocket(WIDTH/2, 0);
+        rocket = new Rocket(WIDTH / 2, 0);
     }
 
     private void drawScene() {
         for (int x = 0; x < WIDTH; x++) {
             for (int y = 0; y < HEIGHT; y++) {
-                setCellColor(x,y, Color.DARKBLUE);
+                setCellColor(x, y, Color.DARKBLUE);
             }
         }
         landscape.draw(this);
@@ -46,9 +46,9 @@ public class MoonLanderGame extends Game {
 
     }
 
-    public void setCellColor(int x, int y, Color color){
-        if(!(x<0||y<0|| x>WIDTH-1|| y>HEIGHT-1))
-        super.setCellColor(x,y,color);
+    public void setCellColor(int x, int y, Color color) {
+        if (!(x < 0 || y < 0 || x > WIDTH - 1 || y > HEIGHT - 1))
+            super.setCellColor(x, y, color);
     }
 
     @Override
@@ -61,11 +61,11 @@ public class MoonLanderGame extends Game {
     @Override
     public void onKeyPress(Key key) {
         if (key == Key.UP) isUpPressed = true;
-        if (key == Key.LEFT){
+        if (key == Key.LEFT) {
             isRightPressed = false;
             isLeftPressed = true;
         }
-        if (key == Key.RIGHT){
+        if (key == Key.RIGHT) {
             isLeftPressed = false;
             isRightPressed = true;
         }
@@ -73,10 +73,12 @@ public class MoonLanderGame extends Game {
 
     @Override
     public void onKeyReleased(Key key) {
-        if (key== Key.UP){
-isUpPressed = false;
-isRightPressed = false;
-isLeftPressed = false;
+        if (key == Key.UP) isUpPressed = false;
+        if (key == Key.LEFT){
+            isLeftPressed = false;
+        }
+        if (key == Key.RIGHT){
+            isRightPressed = false;
         }
     }
 }

@@ -16,6 +16,7 @@ public class GameObject {
         return width;
     }
 
+
     public double getX() {
         return x;
     }
