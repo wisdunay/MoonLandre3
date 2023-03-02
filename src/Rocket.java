@@ -1,3 +1,4 @@
+import com.cs.engine.cell.Color;
 import com.cs.engine.cell.Game;
 
 import java.util.ArrayList;
@@ -94,8 +95,38 @@ public class Rocket extends GameObject {
     }
 
     private void checkBorders() {
-        if (getX() < LEFT_BORDER+1) setX(LEFT_BORDER+1);
+        if (getX() < LEFT_BORDER + 1) setX(LEFT_BORDER + 1);
         if (getX() > RIGHT_BORDER - getWidth()) setX(RIGHT_BORDER - getWidth());
-        if (getY() < UP_BORDER+1) setY(UP_BORDER+1);
+        if (getY() < UP_BORDER + 1) setY(UP_BORDER + 1);
+    }
+
+    public boolean isCollision(GameObject object) {
+        int transparent = Color.NONE.ordinal();
+        for (int nX = 0; nX < getWidth(); nX++) {
+            for (int nY = 0; nY < getHeight(); nY++) {
+                int objectX = nX + (int) getX() - (int) object.getX();
+                int objectY = nY + (int) getY() - (int) object.getY();
+                if (objectX < 0 || objectX >= object.getWidth() || objectY < 0 || objectY >= object.getHeight()){
+                    continue;
+                }
+                    if (getMatrix()[nY][nX] != transparent && object.getMatrix()[objectY][objectX] != transparent) {
+                        return true;
+                    }
+            }
+        }
+        return false;
+    }
+
+    public boolean isStopped() {
+        return speedY < boost *10;
+    }
+
+    public void land() {
+        setY(getY()-1);
+
+    }
+
+    public void crash() {
+setMatrix(ShapeMatrix.ROCKET_CRASH);
     }
 }
